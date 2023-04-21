@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de eventos y clientes</title>
+  </head>
+  <body>
+    <h1>Eventos de {{ discoteca.nombre }}</h1>
+    <form>
+      <label for="eventos">Elige un evento:</label>
+      <select id="eventos" name="eventos" onchange="mostrarClientes()">
+        {% for evento in eventos %}
+          <option value="{{ evento.id }}">{{ evento.nombre }}</option>
+        {% endfor %}
+      </select>
+    </form>
+    <div id="clientes"></div>
+    
+    <script>
+      function mostrarClientes() {
+        var eventoId = document.getElementById("eventos").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("clientes").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "/clientes/{{ disco_nombre }}/{{ disco_pass }}/" + eventoId, true);
+        xhttp.send();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="staticFiles/imagenes/WIPPASS_icono.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <style>
+       header {
+        position:fixed;
+        width: 100%;
+        background-color: #d8d8d8;
+        height: 70px;
+        /* pone el nav en el centro */
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-top: 30px;
+        box-shadow: 0px 0px 20px black;
+}
+
+.imagen-header {
+   box-shadow: 0px 0px 10px black;
+   width: 100px; /* Ancho de la imagen */
+  height: 100px; /* Altura de la imagen */
+  object-fit: cover; /* Cubrir el contenedor sin estirar o encoger la imagen */
+  border-radius: 50%; /* Aplicar bordes redondeados */
+  object-position: 30% 35%;
+}
+
+nav{
+display: flex;
+align-items: flex-end;
+transition: align-items .2s
+}
+
+.menu-wrapper{
+/*  hace que el menu sea un poquito mas responsive  */
+        width: 100%;
+        height: 100%;
+  max-width: 800px;
+        background-color: transparent;
+                /* esto pone todo en el centro horizontalmente */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+}
+
+.menu-wrapper .smenu {
+        height: 100%;
+        background-color: transparent;
+                /* esto pone todos los elementos ul en el centro verticalmente */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+}
+
+       body {
+          background-color: #2a2a2a;
+          margin: 0;
+          padding: 0;
+          font-family: 'Helvetica', 'Arial', sans-serif;
+          touch-action: pan-x pan-y;
+          overflow-x: hidden;
+        }
+
+
+      * {
+         touch-action: pan-x pan-y;
+      }
+
+      button {
+         touch-action: manipulation;
+      }
+
+
+        h1 {
+          color: #FFFFFF;
+          text-align: center;
+          font-weigth: bold;
+        }
+
+        h3 {
+          color: #9c9c9c; 
+          font-size: 0.8em;
+          text-align: center;
+          font-weight: 200;
+          margin-top: -20px;
+}
+
+
+        #eventos {
+          display: flex;
+          flex-direction: column;
+          align-items: left;
+          justify-content: center;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+
+        .evento {
+          display: flex;
+          border: 1px solid #fffff;
+          align-items: center;
+          background-color: #EDEDED;
+          width: 100%;
+          margin-bottom: 10px;
+          padding: 10px;
+          box-sizing: border-box;
+          border-radius: 5px;
+          text-align: left;
+          cursor: pointer;
+          transition: all .2s ease-in-out;
+        }
+
+        .evento:hover {
+          transform: scale(1.05);
+          background-color: #dfdced;
+        }
+
+        .evento h1 {
+           color: #1F2134;
+           text-align: left;
+           font-weight: bold;
+           font-size: 1.8em;
+       }
+
+        .evento img {
+          max-width: 100px;
+          max-height: 100px;
+          object-fit: cover;
+          border-radius: 5px;
+          margin-right: 15px;
+        }
+
+.eventotitulo {
+    text-align:left;
+    color: #939393;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 7px;
+}
+
+
+        .titulo-fecha {
+          display: column;
+          align-items: left;
+        }
+
+        .titulo {
+          align-items:left;
+          width: 100%;
+          vertical-align: top;
+        }
+
+        .fecha {
+          width: 85px;
+          margin: 0;
+          padding: 3px;
+          border-width: 0;
+          font-weight: 400;
+          color: #ededed;
+          font-size: 1.2em;
+          background-color: #0c43ed;
+          border-radius: 7px;
+          box-shadow: 0px 0px 3px black;
+          text-align: center;
+          }
+
+        .edad {
+          width: 25px;
+          margin: 0;
+          padding: 3px;
+          border-width: 0;
+          color: #373737;
+          font-size: 1.15em;
+          background-color: #c4c4c4;
+          border-radius: 35%;
+          box-shadow: 0px 0px 0px black;
+          text-align: center;
+          }
+
+        .fecha-edad {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 130px;
+        }
+
+
+    </style>
+
+    <title>Eventos {{rrpp.nombre}} {{rrpp.apellido}}</title>
+</head>
+<body>
+    <header class="cabecera"> <!-- COMIENZO DEL HEADER -->
+                <nav class="menu-wrapper">
+                        <div class="smenu smenu1">
+                           <img class="imagen-header" src="{{ url_for('static', filename='imagenes/rrpp/' + rrpp.id  + '.png') }}" width="100" height="100" alt="{{ rrpp.nombre }} {{rrpp.apellido}}">
+                        </div>
+<div class="smenu smenu2">
+                        </div>
+                </nav>
+        </header> <!-- FIN DEL HEADER -->
+   <br>
+<br>
+   <br>
+   <br>
+<br>
+   <br>
+    <h1>{{ rrpp.nombre }} {{ rrpp.apellido }} </h1>
+        <h3>RRPP</h3>
+    <div id="eventos">
+     <h2 class="eventotitulo">EVENTOS:</h2>
+        {% for evento in eventos %}
+           <button class="evento" data-id="{{evento.id}}" onclick="redirectToEvento({{ evento.id }})">
+             <img src="{{ url_for('static', filename='imagenes/eventos/evento{}.png'.format(evento.id)) }}" width="80" height="80" alt="{{ evento.nombre }}" onerror="this.onerror=null;this.src='{{ url_for('static', filename='imagenes/discotecas/' + evento.sala_nombre + '.png') }}';">
+                <div class="titulo-fecha">
+                  <div class="titulo">
+                        <h1>{{evento.nombre}}</h1>
+                  </div>
+
+                  <div class="fecha-edad">
+                      <h3 class="fecha">{{evento.fecha_visual}}</h3>
+                      <h3 class="edad">+{{evento.edad}}</h3>
+                  </div>
+                </div>
+            </button>
+        {% endfor %}
+    </div>
+    <script>
+        const eventos = document.querySelectorAll('.evento');
+        eventos.forEach(evento => {
+            evento.addEventListener('click', () => {
+                const id = evento.dataset.id;
+                let rrpp_id = "";
+                if ("{{ rrpp }}" !== "None") {
+                    rrpp_id = "{{ rrpp.id }}";
+                }
+                const url = `/evento/${id}?rrpp=${rrpp_id}`;
+                console.log(`El evento seleccionado tiene el id ${id}`);
+                window.location.href = url;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='añadir_evento.css') }}">
+	<title>Añadir Evento</title>
+</head>
+<body>
+	<h1>Añadir Evento</h1>
+        <form action="/add_evento" method="POST" enctype="multipart/form-data">
+		
+		<label for="disco_id">Discoteca:</label><br>
+		<select id="disco_id" name="disco_id">
+  		{% for discoteca in discotecas %}
+  			<option value="{{ discoteca.id }}">{{ discoteca.nombre }}</option>
+  		{% endfor %}
+		</select><br>
+
+
+		<label for="nombre">Nombre del evento:</label><br>
+		<input type="text" id="nombre" name="nombre"><br>
+
+		<label for="descripcion">Descripción del evento:</label><br>
+		<textarea id="descripcion" name="descripcion"></textarea><br>
+
+                <label for="imagen">Imagen del evento:</label><br>
+                <input type="file" id="imagen" name="imagen"><br>
+
+		<label for="fecha">Fecha del evento:</label><br>
+		<input type="date" id="fecha" name="fecha"><br>
+
+                <label for="hora">Hora del evento:</label><br>
+                <input type="time" id="hora" name="hora"><br><br>
+
+		<label for="aforo">Aforo máximo:</label><br>
+		<input type="number" id="aforo" name="aforo"><br>
+
+		<input type="submit" value="Guardar">
+	</form>
+</body>
+</html>

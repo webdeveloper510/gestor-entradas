@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='añadir_evento.css') }}">
+        <title>Añadir Entrada</title>
+</head>
+
+<body>
+	<h1>Agregar Entrada</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+	<form action="/add_entrada" method="POST" enctype="multipart/form-data">
+
+                <input type="hidden" id="evento_id" name="evento_id" value="{{ evento_id }}">
+	
+		<label for="tipo">Tipo de Entrada:</label>
+		<input type="text" id="tipo" name="tipo"><br><br>
+
+		<label for="precio">Precio:</label>
+		<input type="text" id="precio" name="precio"><br><br>
+
+		<label for="restantes">Entradas Restantes:</label>
+		<input type="text" id="restantes" name="restantes"><br><br>
+
+		<input type="submit" value="Agregar Entrada">
+	</form>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<html>
+<head>
+    <link rel="icon" type="image/png" href="staticFiles/imagenes/WIPPASS_icono.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Entradas {{evento.nombre}}</title>
+    <meta charset="UTF-8">
+    <style>
+header {
+        position:fixed;
+        width: 100%;
+        background-color: #d8d8d8;
+        height: 80px;
+        /* pone el nav en el centro */
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-top: 30px;
+        box-shadow: 0px 0px 20px black;
+}
+
+.imagen-header {
+   box-shadow: 0px 0px 10px black;
+   border-radius: 10px;
+}
+
+
+nav{
+display: flex;
+align-items: flex-end;
+transition: align-items .2s
+}
+
+.menu-wrapper{
+/*  hace que el menu sea un poquito mas responsive  */
+        width: 100%;
+        height: 100%;
+  max-width: 800px;
+        background-color: transparent;
+                /* esto pone todo en el centro horizontalmente */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+}
+
+.menu-wrapper .smenu {
+        height: 100%;
+        background-color: transparent;
+                /* esto pone todos los elementos ul en el centro verticalmente */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+}
+
+
+       body {
+         font-family: 'Helvetica', 'Arial', sans-serif;
+         background-color: #2a2a2a;
+         margin: 0;
+         padding: 0;
+         touch-action: pan-x pan-y;
+         overflow-x: hidden;
+       }
+
+      * {
+         touch-action: pan-x pan-y;
+      }
+
+      button {
+         touch-action: manipulation;
+      }
+
+      h1 {
+          color: #ededed;
+          font-weight: bold;
+          font-size: 1.8em;
+          text-align: center;
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+
+      h3 {
+          color: #c0c0c0;
+          text-align: center;
+          font-weight: 200;
+          margin-top: -15px;
+      }
+      h4 {
+          text-align: center;
+          padding: 6px;
+          font-weight: 200;
+          color: #d1d1d1;
+          background-color: #3c3c3c;
+          border-radius: 15px;
+          margin-left: 34%;
+          margin-right: 34%;
+
+       }
+
+
+
+
+      .linea_boton {
+         width: 100%;
+         align-itmes: center;
+      }
+
+      #entradas {
+          display: flex;
+          flex-direction: column;
+          align-items: left;
+          justify-content: center;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 10px;
+        }
+
+     .entrada {
+         align-items: center;
+         width: 55%; /* reducir el ancho de la entrada */
+         border-radius: 10px;
+         background-color: #3f3f3f;
+         color: white;
+         margin-bottom: 10px;
+         cursor: pointer;
+         margin: 5px;
+       }
+
+       .entradaagotada {
+         align-items: center;
+         width: 55%; /* reducir el ancho de la entrada */
+         border: 0.7px solid red;
+         border-radius: 10px;
+         background-color: #32322E;
+         color: gray;
+         margin-bottom: 10px;
+         margin: 5px;
+       }
+
+       .entradaagotada h1 {
+  color: gray;
+  text-align: left;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-bottom: 0px;
+}
+
+.entradaagotada h2 {
+  margin: 0 0 10px;
+  text-align: right;
+  font-size: 17px;
+  margin-right: 10px;
+}
+
+.entrada h1 {
+  color: #ffffff;
+  text-align: left;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-bottom: 0px;
+}
+
+.entrada h2 {
+  margin: 0 0 10px;
+  text-align: right;
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+.round-btn {
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.round-input {
+  width: 40px;
+  height: 40px;
+  border: 0px solid #f0f008;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #f7f724;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.entradatitulo {
+    text-align:left;
+    color: #BFBFBF;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 7px;
+}
+
+.entrada-borde{
+  border: 0.7px solid #14de00;
+}
+
+.entrada-cero {
+  border: 0.7px solid #afcaff;
+}
+.descuento-cantidad {
+  margin-left: 7px;
+  font-size: 10px;
+  color: #999;
+  margin-top: -5px;
+  margin-bottom: -2px;
+}
+    </style>
+    <header class="cabecera"> <!-- COMIENZO DEL HEADER -->
+                <nav class="menu-wrapper">
+                        <div class="smenu smenu1">
+                           <img class="imagen-header" src="{{ url_for('static', filename='imagenes/eventos/evento{}.png'.format(evento.id)) }}" width="130" height="130" alt="{{ evento.nombre }}" onerror="this.onerror=null;this.src='{{ url_for('static', filename='imagenes/discotecas/' + discoteca.nombre + '.png') }}';">
+                        </div>
+                        <div class="smenu smenu2"></div>
+                </nav>
+        </header> <!-- FIN DEL HEADER -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <h1 class="titulo">{{evento.nombre}}</h1>
+    <h3 class="discotitulo">{{discoteca.nombre}}</h3>
+    <h4 class="fecha">{{evento.fecha_visual}}</h4>  
+  <div id="entradas">
+    <h2 class="entradatitulo">ENTRADAS:</h2>
+    <p class="descuento-cantidad">¡Ahorra comprando en cantidad!</p> 
+       {% for entrada in entradas %}
+            {% if entrada.restantes == 0 %}
+              <button class="entradaagotada" disabled>
+                <h1> {{entrada.tipo}}</h1>
+                <h2> {{entrada.precio}} €</h2>
+              </button>
+            {% else %}
+              <div class="linea_boton">
+              <button id="boton_{{entrada.id}}"class="entrada entrada-borde entrada-cero" onclick="redirect('{{ evento.id }}', '{{ entrada.id }}', '{{ rrpp_id }}')" disabled>
+                <h1> {{entrada.tipo}} </h1>
+                <h2> {{entrada.precio}} €</h2>
+                <button id="boton_minus_{{entrada.id}}" class="round-btn" onclick= "restar({{entrada.id}})">-</button>
+                <input type="text" id="contador_{{entrada.id}}" class="round-input" value="0" readonly>
+                <button id="boton_plus_{{entrada.id}}" class="round-btn" onclick= "sumar({{entrada.id}})">+</button>
+              </button>
+              </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <script type="text/javascript">
+      function redirect(eventoId, entradaId, rrpp_id) {
+         let cantidad = parseInt(document.getElementById(`contador_${entradaId}`).value);
+         const url = `/evento/${eventoId}/${entradaId}?rrpp=${rrpp_id},${cantidad}`;
+         window.location.href = url;
+      }
+
+
+      function sumar(entrada_id) {
+        document.getElementById(`boton_${entrada_id}`).disabled = false;
+        let cantidad = parseInt(document.getElementById(`contador_${entrada_id}`).value);
+        if (cantidad == 0){
+             const boton = document.getElementById(`boton_${entrada_id}`);
+             boton.classList.remove('entrada-cero');
+             boton.classList.add('entrada-borde');
+        }
+        cantidad ++;
+        document.getElementById(`boton_minus_${entrada_id}`).disabled = false;
+        if (cantidad == 13) {
+           cantidad = 12;
+           document.getElementById(`boton_plus_${entrada_id}`).disabled = true;
+        }
+        document.getElementById(`contador_${entrada_id}`).value = cantidad;
+      }
+
+
+      function restar(entrada_id) {
+        let cantidad = parseInt(document.getElementById(`contador_${entrada_id}`).value);
+        cantidad --;
+        if (cantidad == 0) {
+          document.getElementById(`boton_${entrada_id}`).disabled = true;
+          const boton = document.getElementById(`boton_${entrada_id}`);
+          boton.classList.remove('entrada-borde');
+          boton.classList.add('entrada-cero');
+        }
+        document.getElementById(`boton_plus_${entrada_id}`).disabled = false;
+        if (cantidad < 0) {
+           cantidad = 0;
+           document.getElementById(`boton_minus_${entrada_id}`).disabled = true;
+        }
+        document.getElementById(`contador_${entrada_id}`).value = cantidad;
+      }
+
+
+    </script>
+  </body>
+</html>

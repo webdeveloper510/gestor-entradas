@@ -1,0 +1,7 @@
+# HSTS 1.0 Known Hosts database for GNU Wget.
+# Edit at your own risk.
+# <hostname>	<port>	<incl. subdomains>	<created>	<max-age>
+wetransfer.com	0	1	1680105132	15552000
+www.dropbox.com	0	1	1680106173	31536000
+we.tl	0	1	1680105132	31536000
+uc203286670a72a05af5844d5c95.dl.dropboxusercontent.com	0	1	1680106173	31536000

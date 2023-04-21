@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/png" href="staticFiles/imagenes/WIPPASS_icono.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Wippass</title>
+    <style>
+      body {
+        background-color: #333;
+        color: #fff;
+        font-family: Helvetica, Arial, sans-serif;
+        text-align: center;
+        margin-top: 100px;
+      }
+      h1 {
+        font-size: 40px;
+      }
+      select {
+        width: 200px;
+        margin-bottom: 20px;
+        font-size: 20px;
+        padding: 10px;
+        border: none;
+        background-color: #555;
+        color: #fff;
+      }
+      button {
+        font-size: 24px;
+        padding: 10px 20px;
+        background-color: #00a5ff;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>SELECCIONA UNA DISCOTECA</h1>
+    <form id="buscador" method="GET" action="/busqueda">
+      <select id="discoteca" name="discoteca">
+        {% for disco in discotecas %}
+        <option value="{{ disco.nombre }}">{{ disco.nombre }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <button type="submit">Buscar</button>
+    </form>
+    <script>
+      document.getElementById("buscador").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var discoteca = document.getElementById("discoteca").value;
+        window.location.href = "/" + discoteca;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<main class="ticket-system">
+   <div class="top">
+   <h1 class="title">Wait a second, your ticket is being printed</h1>
+   <div class="printer" />
+   </div>
+   <div class="receipts-wrapper">
+      <div class="receipts">
+         <div class="receipt">
+            <svg class="airliner-logo" viewBox="0 0 403 94" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+               
+            </svg>
+            <div class="route">
+               <h2>NYC</h2>
+               <svg class="plane-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 510">
+                
+               </svg>
+               <h2>ATL</h2>
+            </div>
+            <div class="details">
+               <div class="item">
+                  <span>Passanger</span>
+                  <h3>69Pixels</h3>
+               </div>
+               <div class="item">
+                  <span>Flight No.</span>
+                  <h3>US6969</h3>
+               </div>
+               <div class="item">
+                  <span>Departure</span>
+                  <h3>08/26/2018 15:33</h3>
+               </div>
+               <div class="item">
+                  <span>Gate Closes</span>
+                  <h3>15:03</h3>
+               </div>
+               <div class="item">
+                  <span>Luggage</span>
+                  <h3>Hand Luggage</h3>
+               </div>
+               <div class="item">
+                  <span>Seat</span>
+                  <h3>69P</h3>
+               </div>
+            </div>
+         </div>
+         <div class="receipt qr-code">
+            IMAGEN AQUI!!
+            <div class="description">
+               <h2>69Pixels</h2>
+               <p>Show QR-code when requested</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</main>

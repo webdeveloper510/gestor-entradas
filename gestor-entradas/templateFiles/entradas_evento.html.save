@@ -1,0 +1,167 @@
+<html>
+<head>
+    <link rel="icon" type="image/png" href="staticFiles/imagenes/WIPPASS_icono.png">
+    <title>{{evento.nombre}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       body {
+         background-color: #24231E;
+         margin: 0;
+         padding: 0;
+       }
+
+      h1 {
+          color: #FFFFFF;
+          text-align: center;
+        }
+
+      #linea_boton {
+         width: 100%;
+
+      }
+
+      #entradas {
+          display: flex;
+          flex-direction: column;
+          align-items: left;
+          justify-content: center;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 8px;
+        }
+
+     .entrada {
+         align-items: center;
+         width: 55%; /* reducir el ancho de la entrada */
+         border: 1px solid green;
+         border-radius: 10px;
+         background-color: #32322E;
+         color: white;
+         margin-bottom: 10px;
+         cursor: pointer;
+         margin: 5px;
+       }
+
+       .entradaagotada {
+         align-items: center;
+         width: 55%; /* reducir el ancho de la entrada */
+         border: 1px solid red;
+         border-radius: 10px;
+         background-color: #32322E;
+         color: gray;
+         margin-bottom: 10px;
+         margin: 5px;
+       }
+
+       .entradaagotada h1 {
+  color: gray;
+  text-align: left;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-bottom: 0px;
+}
+
+.entradaagotada h2 {
+  margin: 0 0 10px;
+  text-align: right;
+  font-size: 17px;
+  margin-right: 10px;
+}
+
+.entrada h1 {
+  color: #ffffff;
+  text-align: left;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-bottom: 0px;
+}
+
+.entrada h2 {
+  margin: 0 0 10px;
+  text-align: right;
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+.round-btn {
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.round-input {
+  width: 40px;
+  height: 40px;
+  border: 0px solid #f0f008;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #f7f724;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+ 
+    </style>
+    <header>
+      <h1>{{evento.nombre}}</h1>
+    </header>
+    <div id="entradas">
+        {% for entrada in entradas %}
+            {% if entrada.restantes == 0 %}
+              <button class="entradaagotada" disabled>
+                <h1> {{entrada.tipo}}</h1>
+                <h2> {{entrada.precio}} €</h2>
+              </button>
+            {% else %}
+              <div id="linea_boton">
+              <button id="boton_{{entrada.id}}"class="entrada" onclick="redirect('{{ evento.id }}', '{{ entrada.id }}', '{{ rrpp_id }}')" disabled>
+                <h1> {{entrada.tipo}} </h1>
+                <h2> {{entrada.precio}} €</h2>
+                <button id="boton_minus_{{entrada.id}}" class="round-btn" onclick= "restar({{entrada.id}})">-</button>
+                <input type="text" id="contador_{{entrada.id}}" class="round-input" value="0" readonly>
+                <button id="boton_plus_{{entrada.id}}" class="round-btn" onclick= "sumar({{entrada.id}})">+</button>
+              </button>
+              </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <script type="text/javascript">
+      function redirect(eventoId, entradaId, rrpp_id) {
+         let cantidad = parseInt(document.getElementById(`contador_${entradaId}`).value);
+         const url = `/evento/${eventoId}/${entradaId}?rrpp=${rrpp_id},${cantidad}`;
+	         window.location.href = url;
+      }
+      function sumar(entrada_id) {
+        document.getElementById(`boton_${entrada_id}`).disabled = false;
+        let cantidad = parseInt(document.getElementById(`contador_${entrada_id}`).value);
+        cantidad ++;
+        document.getElementById(`boton_minus_${entrada_id}`).disabled = false;
+        if (cantidad == 13) {
+           cantidad = 12;
+           document.getElementById(`boton_plus_${entrada_id}`).disabled = true;
+        }
+        document.getElementById(`contador_${entrada_id}`).value = cantidad;
+      }
+
+      function restar(entrada_id) {
+        // Deshabilitar el botón si la cantidad es cero
+        if (cantidad == 0) {
+          document.getElementById(`boton_${entrada_id}`).disabled = true;
+        }
+        let cantidad = parseInt(document.getElementById(`contador_${entrada_id}`).value);
+        cantidad --;
+        document.getElementById(`boton_plus_${entrada_id}`).disabled = false;
+        if (cantidad < 0) {
+           cantidad = 0;
+           document.getElementById(`boton_minus_${entrada_id}`).disabled = true;
+        }
+        document.getElementById(`contador_${entrada_id}`).value = cantidad;
+      }
+
+    </script>
+  </body>
+</html>

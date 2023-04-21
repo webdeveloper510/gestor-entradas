@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="staticFiles/imagenes/WIPPASS_icono.png">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='datos_cliente.css') }}">
+  <title>Datos Asistentes</title>
+</head>
+<body>
+  <h1>{{evento.nombre}}</h1>
+  <form id="compra-entradas-form" method="POST" action="/evento/{{evento.id}}/{{entrada.id}}?rrpp={{rrpp_id}},{{cantidad}}">
+    {% for i in range(cantidad)%}
+    <h1>ASISTENTE {{i+1}}:</h1>
+    <label for="nombre{{i}}">Nombre:</label>
+    <input type="text" id="nombre{{i}}" name="nombre{{i}}" required>
+    <br>
+    <label for="apellido{{i}}">Apellidos:</label>
+    <input type="text" id="apellido{{i}}" name="apellido{{i}}" required>
+    <br>
+    <label for="fecha_nacimiento{{i}}">Fecha de Nacimiento:</label>
+    <input type="date" id="fecha_nacimiento{{i}}" name="fecha_nacimiento{{i}}" required>
+    <br>
+    <label for="correo{{i}}">Correo:</label>
+    <input type="email" id="correo{{i}}" name="correo{{i}}" required>
+    <br>
+    <label for="sexo{{i}}">Género:</label>
+    <select id="sexo{{i}}" name="sexo{{i}}" required>
+      <option value="">Seleccione una opción</option>
+      <option value="M">Masculino</option>
+      <option value="F">Femenino</option>
+      <option value="O">Otro</option>
+    </select>
+    <br>
+    <br>
+    <br>
+    {% endfor %}
+     <table class="result-tbl">
+      <tbody>
+        <tr class="tbl-foot">
+          <td colspan="1">
+            <label class="unidad">Unidad:</label>
+          </td>
+          <td>
+            <div class="currency">
+              <label class="unidad">{{unidad}}€</label>
+            </div>
+          </td>
+        </tr>
+        <tr class="tbl-foot">
+          <td colspan="1">
+            <label class="gg">Gasto de Gestión:</label>
+          </td>
+          <td class="currency">
+            <label class="gg">{{gg}}€</label>
+          </td>
+        </tr>
+        <tr class="tbl-foot">
+          <td colspan="1">
+            <label class="total">Total:</label>
+          </td>
+          <td>
+          <div>
+          <label class="total">{{total}}€</label>
+          </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+   <p class="terminos-condiciones">Si continuas con el pago, estas aceptando los <a href="{{ url_for('terminos_condiciones') }}" class="terminos-condiciones">Términos y Condiciones</a></p>
+   <button type="submit" id="comprar-entradas-btn">Procesar Pago</button>
+   </form>
+  </body>
+</html>

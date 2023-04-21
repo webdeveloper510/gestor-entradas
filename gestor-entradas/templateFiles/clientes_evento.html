@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Clientes</title>
+  <style>
+    /* Estilos CSS para el fondo oscuro */
+    body {
+      background-color: #272727;
+      color: #fff;
+    }
+
+    /* Estilos CSS para la lista de clientes */
+    .cliente {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #fff;
+    }
+
+    .nombre {
+      font-weight: bold;
+    }
+
+    .apellido {
+      color: #ededed;
+    }
+
+    .email {
+      color: #7aa6c2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Clientes</h1>
+  <h2>Total: {{total_clientes}}</h2>
+  <div>
+    {% for cliente in clientes %}
+    <div class="cliente">
+      <div class="nombre">{{ cliente.nombre }}</div>
+      <div class="apellido">{{ cliente.apellido }}</div>
+      <div class="email">{{ cliente.correo}}</div>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

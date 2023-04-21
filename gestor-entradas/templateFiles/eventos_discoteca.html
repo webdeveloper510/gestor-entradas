@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="staticFiles/imagenes/WIPPASS_icono.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        header {
+        position:fixed;
+        width: 100%;
+        background-color: #d8d8d8;
+        height: 80px;
+        /* pone el nav en el centro */
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-top: 30px;
+        box-shadow: 0px 0px 20px black;
+}
+
+.imagen-header {
+   box-shadow: 0px 0px 10px black; 
+   border-radius: 10px;
+   border: 1px solid white;
+}
+
+nav{
+display: flex;
+align-items: flex-end;
+transition: align-items .2s
+}
+
+.menu-wrapper{
+/*  hace que el menu sea un poquito mas responsive  */
+        width: 100%;
+        height: 100%;
+  max-width: 800px;
+        background-color: transparent;
+                /* esto pone todo en el centro horizontalmente */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+}
+
+.menu-wrapper .smenu {
+        height: 100%;
+        background-color: transparent;
+                /* esto pone todos los elementos ul en el centro verticalmente */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+}
+
+       body {
+          background-color: #2a2a2a; 
+          margin: 0;
+          padding: 0;
+          font-family: 'Helvetica', 'Arial', sans-serif;
+          touch-action: pan-x pan-y;
+          overflow-x: hidden;
+        }
+
+      * {
+         touch-action: pan-x pan-y;
+      }
+
+      button {
+         touch-action: manipulation;
+      }
+
+
+        h1 {
+          color: #FFFFFF;
+          text-align: center;
+          font-weigth: bold;
+        }
+
+        h3 {
+          color: #9c9c9c;
+          font-size: 0.8em;
+          text-align: center;
+          font-weight: 200;
+          margin-top: -20px;        
+}
+
+
+        #eventos {
+          display: flex;
+          flex-direction: column;
+          align-items: left;
+          justify-content: center;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+
+       #descripcion {
+          display: flex;
+          flex-direction: column;
+          align-items: left;
+          justify-content: center;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+
+
+        .evento {
+          display: flex;
+          border: 1px solid #fffff;
+          align-items: center;
+          background-color: #EDEDED;
+          width: 100%;
+          margin-bottom: 10px;
+          padding: 10px;
+          box-sizing: border-box;
+          border-radius: 5px;
+          text-align: left;
+          cursor: pointer;
+          transition: all .2s ease-in-out;
+        }
+
+        .evento:hover {
+          transform: scale(1.05);
+          background-color: #dfdced;
+        }
+
+        .evento h1 {
+           color: #1F2134;
+           text-align: left;
+           font-weight: bold;
+           font-size: 1.8em;
+       }
+
+        .evento img {
+          max-width: 100px;
+          max-height: 100px;
+          object-fit: cover;
+          border-radius: 5px;
+          margin-right: 15px;
+        }
+
+.eventotitulo {
+    text-align:left;
+    color: #939393;
+    font-weight: bold;
+    margin-left: 7px;
+}
+
+.descripciontitulo {
+    text-align:left;
+    color: #939393;
+    font-weight: bold;
+    margin-left: 7px;
+    margin-top: -5px;
+}
+
+
+
+        .titulo-fecha {
+          display: column;
+          align-items: left;
+        }
+        
+        .titulo {
+          align-items:left;
+          width: 100%;
+          vertical-align: top;
+        }
+
+        .fecha {
+          width: 85px;
+          margin: 0;
+          padding: 3px;
+          border-width: 0;
+          font-weight: 400;
+          color: #ededed;
+          font-size: 1.2em;
+          background-color: #0c43ed;
+          border-radius: 7px;
+          box-shadow: 0px 0px 3px black;
+          text-align: center;
+          }
+
+        .edad {
+          width: 25px;
+          margin: 0;
+          padding: 3px;
+          border-width: 0;
+          color: #373737;
+          font-size: 1.15em;
+          background-color: #c4c4c4;
+          border-radius: 35%;
+          box-shadow: 0px 0px 0px black;
+          text-align: center;
+          }
+
+        .fecha-edad {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 130px;
+        }
+
+       p {
+          font-size: 14px;
+          text-align:left;
+          color: #797979;
+          font-weight: 200;
+          margin-top: -5px;
+          margin-right: 7px;
+          margin-left: 7px;
+          text-align: justify;
+          white-space: pre-line;
+         }
+
+    </style>
+    <title>{{disco_nombre}}</title>
+</head>
+<body>
+   <header class="cabecera"> <!-- COMIENZO DEL HEADER -->
+                <nav class="menu-wrapper">
+                        <div class="smenu smenu1">
+                           <img class="imagen-header" src="{{ url_for('static', filename='imagenes/discotecas/' + disco_nombre + '.png') }}" width="130" height="130" alt="{{ disco_nombre }}">
+                        </div>
+<div class="smenu smenu2">
+                        </div>
+                </nav>
+        </header> <!-- FIN DEL HEADER -->
+   <br>
+<br>
+   <br>
+   <br>
+<br>
+   <br>
+<br>
+   <h1 class="titulo">{{disco_nombre}}</h1>
+   <h3>Discoteca</h3>
+    <div id="eventos">
+         <h2 class="eventotitulo">EVENTOS:</h2>
+        {% for evento in eventos %}
+            <button class="evento" onclick="redirectToEvento({{ evento.id }})">
+             <img src="{{ url_for('static', filename='imagenes/eventos/evento{}.png'.format(evento.id)) }}" width="80" height="80" alt="{{ evento.nombre }}" onerror="this.onerror=null;this.src='{{ url_for('static', filename='imagenes/discotecas/' + disco_nombre + '.png') }}';">
+                <div class="titulo-fecha">
+                  <div class="titulo">
+                        <h1>{{evento.nombre}}</h1>
+                  </div>
+                    
+                  <div class="fecha-edad">
+                      <h3 class="fecha">{{evento.fecha_visual}}</h3>
+                      <h3 class="edad">+{{evento.edad}}</h3>
+                  </div>
+                </div>
+            </button>
+        {% endfor %}
+    </div>
+    <div id="descripcion">
+       <h2 class="descripciontitulo"> DESCRIPCIÓN:</h2>
+       <p>{{ discoteca.descripcion|replace('<br>', '\n\n') }}</p>
+    </div>
+
+<div id="descripcion">
+    <h2 class="descripciontitulo"> UBICACIÓN:</h2>
+    <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+		<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
+        var map = JSON.parse('{{ map | tojson | safe }}');
+        var setting = {"height":150,"width":850,"zoom":13,"queryString":map.queryString,"place_id":map.place_id,"satellite":false,"centerCoord":[40.41315531807904,-3.7170754647497195],"cid":map.cid,"lang":"es","cityUrl":"/spain/madrid","cityAnchorText":"Mapa de Madrid, Comunidad de Madrid, España","id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"913249"};
+        var d = document;
+        var s = d.createElement('script');
+        s.src = 'https://1map.com/js/script-for-user.js?embed_id=913249';
+        s.async = true;
+        s.onload = function (e) {
+          window.OneMap.initMap(setting)
+        };
+        var to = d.getElementsByTagName('script')[0];
+        to.parentNode.insertBefore(s, to);
+      })();</script><a href="https://1map.com/es/map-embed">1 Map</a></div>
+</div>
+
+    <script>
+        function redirectToEvento(evento_id) {
+            window.location.href = "/evento/" + evento_id + "?rrpp=None";
+        }
+    </script>
+</body>
+</html>
+
