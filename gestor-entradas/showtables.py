@@ -7,6 +7,7 @@ config = {
     'password': 'MramiroVa2002'
 }
 
+
 cnx = mysql.connector.connect(**config)
 
 # Obtener un cursor

@@ -270,7 +270,7 @@ def obtener_disco(disco_nombre):
        else:
           abort(404)
     except mysql.connector.Error as error:
-       print(f"Error al obtener el disco {disco_id}")
+       print(f"Error al obtener el disco {disco_nombre}")
 
        return -1
 
@@ -763,7 +763,7 @@ def mostrar_eventos(disco_nombre):
 @app.route('/<disco_nombre>/<disco_pass>')
 def mostrar_clientes_evento(disco_nombre, disco_pass):
     discoteca = obtener_disco(disco_nombre)
-    if not discoteca==-1 and true:
+    if not discoteca==-1 and True:
         # Obtenemos los eventos de la discoteca
         eventos = obtener_eventos_disco(disco_nombre)
 
@@ -771,7 +771,7 @@ def mostrar_clientes_evento(disco_nombre, disco_pass):
         evento_id = request.args.get('eventos')
         clientes = []
         if evento_id:
-            clientes = obtener_clientes_evento(evento_id)
+            clientes = obtener_clientes(evento_id)
 
         return render_template('eventos_y_clientes.html', eventos=eventos, discoteca=discoteca, clientes=clientes)
 
