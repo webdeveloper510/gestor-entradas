@@ -132,6 +132,45 @@ def obtener_discotecas():
       return -1
    return discotecas
 
+
+from passlib.apps import custom_app_context as pwd_context
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+    if request.method == 'POST':
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        password = request.form['password']
+        conpassword = request.form['conpassword']
+        email = request.form['email']
+        role = request.form['owners']
+        try:
+            conexion = conectar_db()
+            cursor = conexion.cursor()
+            consulta = f"""SELECT email FROM user where email='{email}'"""
+            cursor.execute(consulta)
+
+            # user = User.query.filter_by(email=email).first()
+            if cursor is None:
+                if password == conpassword :
+                    password_hash = pwd_context.encrypt(password)
+                    # user = User(firstname=firstname,lastname=lastname,password=password_hash,email=email,role=role)
+                    user = f"INSERT INTO user (firstname, lastname, email, password, role) VALUES('{firstname}', '{lastname}', '{password_hash}', '{email}', '{role}')"
+                    cursor.execute(user)
+                    conexion.commit()
+                    return "User registered successfully"
+                else:
+                    return "Your password and confirmation password do not match."
+            else:
+                return "Your email is already exists"
+            cursor.close()
+            conexion.close()    
+        except mysql.connected.Error as error:
+            print(f'Error al insertar: {error}')
+            return error
+            
+    return render_template('index.html')
+
+
 # Función para obtener los eventos de la discoteca
 def obtener_eventos_disco(disco_nombre):
     eventos = []
