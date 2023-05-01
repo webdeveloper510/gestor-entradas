@@ -132,6 +132,10 @@ def obtener_discotecas():
       return -1
    return discotecas
 
+@app.route('/home')
+def home():
+    return render_template('index1.html')
+
 
 from passlib.apps import custom_app_context as pwd_context
 @app.route('/signup', methods=['GET','POST'])
